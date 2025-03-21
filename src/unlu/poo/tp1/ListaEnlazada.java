@@ -88,6 +88,17 @@ public class ListaEnlazada {
         return null;
     }
 
+    public Nodo buscar(int clave) {
+        Nodo actual = this.inicio;
+        while (actual != null) {
+            if (actual.getClave() == clave) {
+                return actual;
+            }
+            actual = actual.getSiguiente();
+        }
+        return null;
+    }
+
     public void insertar(int pos, int clave, String valor) {
         if (pos < 1) {
             System.out.println("No se puede insertar el elemento. La posición no es válida.");
