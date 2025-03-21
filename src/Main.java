@@ -3,13 +3,22 @@ import unlu.poo.tp1.*;
 public class Main {
     public static void main(String[] args) {
         ListaEnlazada lista = new ListaEnlazada();
-        lista.agregar(1, null);
-        lista.agregar(2, "sarasa");
-        lista.agregar(3, null);
-        lista.agregar(4, "asddasd");
-        lista.eliminar(3);
+        lista.agregar(new Nodo(5, null));
+        lista.insertar(new Nodo(2, null), 1);
         lista.imprimir();
-        System.out.println(lista.recuperar(3).getValor());
-        System.out.println(lista.buscar(2).getValor());
+
+        Cola cola = new Cola();
+        cola.encolar(new Nodo(3, null));
+        cola.encolar(new Nodo(7, null));
+        cola.encolar(new Nodo(1, null));
+        cola.desencolar();
+        cola.imprimir();
+
+        Pila pila = new Pila();
+        pila.apilar(new Nodo(4, null));
+        pila.apilar(new Nodo(6, null));
+        pila.apilar(new Nodo(8, null));
+        pila.desapilar();
+        pila.imprimir();
     }
 }

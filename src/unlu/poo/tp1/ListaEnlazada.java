@@ -29,19 +29,18 @@ public class ListaEnlazada {
         }
     }
 
-    public void agregar(int clave, String valor) {
-        Nodo nuevo = new Nodo(clave, valor);
+    public void agregar(Nodo nodo) {
         if (this.inicio == null) {
-            this.inicio = nuevo;
+            this.inicio = nodo;
         } else {
             Nodo actual = this.inicio;
             while (actual.getSiguiente() != null) {
                 actual = actual.getSiguiente();
             }
-            actual.setSiguiente(nuevo);
+            actual.setSiguiente(nodo);
         }
         this.cantidadElementos++;
-        System.out.println("Elemento agregado: " + clave);
+        System.out.println("Elemento agregado: " + nodo.getClave());
     }
 
     public void eliminar(int clave) {
@@ -99,23 +98,21 @@ public class ListaEnlazada {
         return null;
     }
 
-    public void insertar(int pos, int clave, String valor) {
+    public void insertar(Nodo nodo, int pos) {
         if (pos < 1) {
             System.out.println("No se puede insertar el elemento. La posición no es válida.");
             return;
         }
 
         if (pos > this.cantidadElementos) {
-            this.agregar(clave, valor);
-            System.out.println("Elemento " + valor + " insertado en la última posición.");
+            this.agregar(nodo);
+            System.out.println("Elemento " + nodo.getClave() + " insertado en la última posición.");
             return;
         }
 
-        Nodo nuevo = new Nodo(clave, valor);
-
         if (pos == 1) {
-            nuevo.setSiguiente(this.inicio);
-            this.inicio = nuevo;
+            nodo.setSiguiente(this.inicio);
+            this.inicio = nodo;
             return;
         }
 
@@ -123,9 +120,9 @@ public class ListaEnlazada {
         Nodo actual = this.inicio;
         while (actual != null) {
             if (posActual == pos - 1) {
-                nuevo.setSiguiente(actual.getSiguiente());
-                actual.setSiguiente(nuevo);
-                System.out.println("Elemento " + valor + " insertado en la posición " + pos);
+                nodo.setSiguiente(actual.getSiguiente());
+                actual.setSiguiente(nodo);
+                System.out.println("Elemento " + nodo.getClave() + " insertado en la posición " + pos);
                 return;
             }
             posActual++;
