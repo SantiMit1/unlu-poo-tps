@@ -23,14 +23,14 @@ public class ListaEnlazada {
             System.out.println("Elementos de la lista:");
             Nodo actual = this.inicio;
             while (actual != null) {
-                System.out.println(actual.getValor());
+                System.out.println(actual.getClave());
                 actual = actual.getSiguiente();
             }
         }
     }
 
-    public void agregar(int valor) {
-        Nodo nuevo = new Nodo(valor);
+    public void agregar(int clave, String valor) {
+        Nodo nuevo = new Nodo(clave, valor);
         if (this.inicio == null) {
             this.inicio = nuevo;
         } else {
@@ -41,10 +41,10 @@ public class ListaEnlazada {
             actual.setSiguiente(nuevo);
         }
         this.cantidadElementos++;
-        System.out.println("Elemento agregado: " + valor);
+        System.out.println("Elemento agregado: " + clave);
     }
 
-    public void eliminar(int valor) {
+    public void eliminar(int clave) {
         if (this.estaVacia()) {
             System.out.println("No se puede eliminar el elemento. La lista esta vacia.");
             return;
@@ -52,17 +52,17 @@ public class ListaEnlazada {
 
         Nodo actual = this.inicio;
 
-        if (actual.getValor() == valor) {
+        if (actual.getClave() == clave) {
             this.inicio = actual.getSiguiente();
             this.cantidadElementos--;
-            System.out.println("Elemento eliminado: " + valor);
+            System.out.println("Elemento eliminado: " + clave);
         }
 
         while (actual.getSiguiente() != null) {
-            if (actual.getSiguiente().getValor() == valor) {
+            if (actual.getSiguiente().getClave() == clave) {
                 actual.setSiguiente(actual.getSiguiente().getSiguiente());
                 this.cantidadElementos--;
-                System.out.println("Elemento eliminado: " + valor);
+                System.out.println("Elemento eliminado: " + clave);
             } else {
                 actual = actual.getSiguiente();
             }
@@ -88,19 +88,19 @@ public class ListaEnlazada {
         return null;
     }
 
-    public void insertar(int valor, int pos) {
+    public void insertar(int pos, int clave, String valor) {
         if (pos < 1) {
             System.out.println("No se puede insertar el elemento. La posición no es válida.");
             return;
         }
 
         if (pos > this.cantidadElementos) {
-            this.agregar(valor);
+            this.agregar(clave, valor);
             System.out.println("Elemento " + valor + " insertado en la última posición.");
             return;
         }
 
-        Nodo nuevo = new Nodo(valor);
+        Nodo nuevo = new Nodo(clave, valor);
 
         if (pos == 1) {
             nuevo.setSiguiente(this.inicio);
